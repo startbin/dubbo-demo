@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo https://raw.githubusercontent.com/alibaba/dubbo/master/dubbo-config/dubbo-config-spring/src/main/resources/META-INF/dubbo.xsd
+        ">
+	<!-- https://raw.githubusercontent.com/alibaba/dubbo/master/dubbo-config/dubbo-config-spring/src/main/resources/META-INF/dubbo.xsd -->
+	<!-- http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd -->
+
+	<dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" logger="slf4j" />
+	<!-- 监控中心 -->
+	<dubbo:monitor protocol="registry" />
+<!-- 	<dubbo:reference id="statisticsStorage" interface="com.dubboclub.dk.storage.StatisticsStorage" timeout="30000" /> -->
+
+	<dubbo:registry address="${dubbo.registry.address}" />
+	<!-- <dubbo:registry protocol="zookeeper" address="zk1:2181,zk2:2181,zk3:2181" /> -->
+
+	<!-- dubbo:protocol name必填项目 ，其他可选 ; 将访问日志输出到当前应用的log4j日志：accesslog="true" -->
+
+<!-- 	<dubbo:protocol name="dubbo" serialization="dubbo" accesslog="true" /> -->
+
+	<!-- cluster="failfast" retries="0" loadbalance="random" timeout="20000" -->
+
+	<dubbo:reference id="userRemoteService" timeout="20000" check="false" interface="com.dongao.data.demo.provider.interfaces.UserRemoteService" />
+
+</beans>

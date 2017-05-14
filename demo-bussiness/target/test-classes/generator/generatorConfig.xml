@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- mvn mybatis-generator:generate -->
+<generatorConfiguration>
+	<properties resource="resources.properties" />
+
+	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+		<property name="javaFileEncoding" value="UTF-8" /><!-- java文件编码 ，默认使用当前平台的编码 -->
+
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers" value="tk.mybatis.mapper.common.Mapper" />
+		</plugin>
+
+		<jdbcConnection driverClass="${jdbc.driverClass}" connectionURL="${jdbc.url}" userId="${jdbc.user}" password="${jdbc.password}">
+		</jdbcConnection>
+
+		<javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}">
+			<property name="rootClass" value="${targetBaseModelPackage}" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${targetXMLPackage}" targetProject="${targetResourcesProject}" />
+
+		<javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
+
+		<!-- <table tableName="%">
+			<property name="useActualColumnNames" value="true" />使用数据库字段命名规则
+		</table> -->
+		<table tableName="sys_user">
+			<property name="useActualColumnNames" value="false" /><!-- 使用javaBean 规范 -->
+			<!-- <generatedKey column="id" sqlStatement="JDBC" identity="true" /> -->
+		</table>
+		<!-- <table tableName="%"> -->
+		<!-- <property name="useActualColumnNames" value="true" /> -->
+		<!-- <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" /> -->
+		<!-- </table> -->
+	</context>
+</generatorConfiguration>

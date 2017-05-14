@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds" debug="true">
+	<property resource="dubbo.properties" />
+	<property name="PROJECT_NAME" value="${dubbo.application.name}" />
+	<property name="LOG_FILE" value="${dubbo.logback.file}" />
+	<timestamp key="byDate" datePattern="yyyyMMdd" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<Encoding>UTF-8</Encoding>
+		<encoder>
+			<!-- <pattern>[%t] %p (%c{1}:%L) - %m%n</pattern> -->
+			<!-- <pattern>%d %p [%c] [%t] - &lt;%m&gt;%n</pattern> -->
+			<!-- <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern> -->
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<immediateFlush>true</immediateFlush>
+		</encoder>
+	</appender>
+	<appender name="dubboRolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding>
+		<file>${LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_FILE}-%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>10MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<immediateFlush>true</immediateFlush>
+		</encoder>
+	</appender>
+	<!--dubbo -->
+	<logger name="com.alibaba.dubbo" level="erroe" additivity="false">
+		<appender-ref ref="dubboRolling" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="org.apache.zookeeper" level="erroe" additivity="false">
+		<appender-ref ref="dubboRolling" />
+	</logger>
+	<logger name="com.dongao" level="erroe" additivity="false">
+		<appender-ref ref="dubboRolling" />
+	</logger>
+	<logger name="druid.sql.ResultSet" level="off" additivity="false">
+<!-- 		<appender-ref ref="dubboRolling" /> -->
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="druid.sql.Statement" level="off" additivity="false">
+<!-- 		<appender-ref ref="dubboRolling" /> -->
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<root level="${dubbo.logback.level}">
+<!-- 		<appender-ref ref="STDOUT" /> -->
+		<appender-ref ref="dubboRolling" />
+	</root>
+</configuration>

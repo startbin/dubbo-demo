@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: zhangbin
+Build-Jdk: 1.7.0_21
+Specification-Title: demo-bussiness
+Specification-Version: 1.0-SNAPSHOT
+Implementation-Title: demo-bussiness
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: com.dongao.data
+Main-Class: com.alibaba.dubbo.container.Main
+Created-By: Maven Integration for Eclipse
+

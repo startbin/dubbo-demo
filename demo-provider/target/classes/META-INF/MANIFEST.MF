@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: zhangbin
+Build-Jdk: 1.6.0_31
+Specification-Title: demo-provider
+Specification-Version: 1.0-SNAPSHOT
+Implementation-Title: demo-provider
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: com.dongao.data
+Created-By: Maven Integration for Eclipse
+
